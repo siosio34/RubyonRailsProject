@@ -1,0 +1,31 @@
+.main_content
+	#recipe_top.row
+		.col-md-4
+			= image_tag @recipe.image.url(:medium), class: "recipe_image"
+		.col-md-8
+			#recipe_info
+				%h1= @recipe.title
+				%p.description= @recipe.description
+				%p
+					Submitted by
+					= @recipe.user.email
+	.row
+		.col-md-6
+			#ingredients
+				%h2 재료
+				%ul
+					-	@recipe.ingredients.each do |ingredient|
+						%li= ingredient.name
+
+		.col-md-6
+			#directions
+				%h2 조리법
+				%ul
+					- @recipe.directions.each do |direction|
+						%li=direction.step
+
+	.row
+		.col-md-12
+			= link_to "Back", root_path, class: "btn btn-default"
+			= link_to "Edit", edit_recipe_path, class: "btn btn-default"
+			= link_to "Delete", recipe_path, method: :delete, date: {confirm: "삭제할래" }, class: "btn btn-default"

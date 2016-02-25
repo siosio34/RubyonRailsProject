@@ -1,0 +1,42 @@
+<%= form_for @movie, html: { multipart: true } do |f| %>
+  <% if @movie.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+      <ul>
+      <% @movie.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :제목 %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :내용 %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :상영시간 %><br>
+    <%= f.text_field :movie_length %>
+  </div>
+  <div class="field">
+    <%= f.label :감독 %><br>
+    <%= f.text_field :director %>
+  </div>
+  <div class="field">
+    <%= f.label :별점 %><br>
+    <%= f.text_field :rating %>
+  </div>
+	<div class="field">
+      <%= f.label :사진 %><br>
+      <%= f.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

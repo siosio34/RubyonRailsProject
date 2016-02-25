@@ -1,0 +1,26 @@
+#pin_show.row
+	.col-md-8.col-md-offset-2
+		.panel.panel-default
+			.panel-heading.pin_image
+				= image_tag @pin.image.url(:medium)
+			.panel-body
+				%h1= @pin.title
+				%p= @pin.description
+				%p
+				= @pin.user.email
+				님이 글을 작성
+			.panel-footer
+				.row
+					.col-md-6
+						%p.user
+						= @pin.user.email
+						님이 글을 작성
+					.col-md-6
+						.btn-group.pull-right
+							= link_to like_pin_path(@pin), method: :put, class: "btn btn-default" do
+								%span.glyphicon.glyphicon-heart
+									= @pin.get_upvotes.size
+							- if current_user != nil
+								- if @pin.user_id == current_user.id 
+									= link_to "수정하기", edit_pin_path, class: "btn btn-default"
+									= link_to "삭제하기", pin_path, method: :delete, data: {confirm: "정말로 삭제하시겠습니까? "}, class: "btn btn-default"

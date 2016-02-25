@@ -1,0 +1,17 @@
+<% if !user_signed_in? %>
+	<div class="jumbotron">
+		<h1>당신이 좋아하는 영화의 리뷰를 남겨주세요 !</h1>
+		<p><%= link_to "회원가입 하러가기", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
+	</div>
+<% end %>
+
+
+<div class="row">
+	<% @movies.each do |movie| %>
+		<div class="col-sm-6 col-md-3">
+			<div class="thumbnail">
+				<%= link_to (image_tag movie.image.url(:medium), class: 'image'), movie %>
+			</div>
+		</div>
+	<% end %>
+</div>
